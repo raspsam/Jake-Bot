@@ -66,6 +66,13 @@ var app = {
 			else if (interp.subject === 'i'){
 				rtn = 'You are a mere human.';
 			}
+			else if (interp.subject === 'lazarus'){
+				if (interp.extra === 'wearing'){
+					rtn = rtn + 'not wearing clothes.';
+				}
+				else
+					rtn = rtn + 'a chinese water dragon.';
+			}
 			else 
 				if (interp.extra === 'wearing'){
 					rtn = rtn + 'wearing clothes.';
@@ -118,7 +125,7 @@ var app = {
 		},
 		def = {
 			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can'],
-			subject: ['you', 'i', 'samuel', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth'],
+			subject: ['you', 'i', 'samuel', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus'],
 			female: ['chloe', 'elizabeth', 'laurel'],
 			extra: ['wearing']
 		};
@@ -168,3 +175,4 @@ Please, ask me a simple question about someone I know.
 </body>
 
 </html>
+
