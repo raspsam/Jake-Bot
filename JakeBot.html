@@ -51,6 +51,26 @@ var app = {
 			else 
 				rtn = rtn + interp.subject + '.';
 		}
+		if (interp.question === 'when'){
+			rtn = interp.female ? 'Her ' : 'His ';
+			
+			if (interp.subject === 'your'){
+				
+				if (interp.extra === 'bedtime'){
+					rtn = 'I do not have a bedtime.';
+				}
+				else 
+					rtn = 'I do not know.';
+			}	
+			else if (interp.subject === 'my'){
+				rtn = 'Go ask your mother.';
+			}	
+			else if (interp.subject === 'samuel'){
+				rtn = 'Samuel must go to bed at 8:00.';
+			}	
+			else 
+				rtn = rtn + 'bedtime is highly classified.';
+		}
 		else if (interp.question === 'what'){
 			rtn = interp.female ? 'She is ' : 'He is ';
 		
@@ -146,9 +166,9 @@ var app = {
 		},
 		def = {
 			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can'],
-			subject: ['you', 'i', 'samuel', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your'],
+			subject: ['you', 'i', 'samuel', 'my', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing', 'firetrucks', 'food', 'name']
+			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime']
 		};
 		word = '';
 		
