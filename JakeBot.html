@@ -111,7 +111,11 @@ var app = {
 			rtn = 'Because they have eight wheels and four people on them, and four plus eight is twelve, and there are twelve inches in a foot, and one foot is a ruler, and Queen Elizabeth was a ruler, and Queen Elizabeth was also a ship, and the ship sailed the seas, and in the seas are fish, and fish have fins, and the Finns fought the Russians, and the Russians are red, and fire trucks are always "russian" around.';
 		}
 		else if (interp.question === 'why'){
-			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
+			if (interp.extra === 'firetrucks'){
+			rtn = 'Because they have eight wheels and four people on them, and four plus eight is twelve, and there are twelve inches in a foot, and one foot is a ruler, and Queen Elizabeth was a ruler, and Queen Elizabeth was also a ship, and the ship sailed the seas, and in the seas are fish, and fish have fins, and the Finns fought the Russians, and the Russians are red, and fire trucks are always "russian" around.';
+			}
+			else
+				rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 		}
 		else if (interp.question === 'how'){
 			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
