@@ -49,7 +49,7 @@ var app = {
 				rtn = 'He is my creator, builder, maker, producer, designer, developer.';
 			}	
 			else 
-				rtn = rtn + interp.subject;
+				rtn = rtn + interp.subject + '.';
 		}
 		else if (interp.question === 'what'){
 			rtn = interp.female ? 'She is ' : 'He is ';
@@ -62,6 +62,17 @@ var app = {
 				else
 					rtn = 'I am a computer robot.';
 			
+			}
+			if (interp.subject === 'your'){
+				
+				if (interp.extra === 'food'){
+					rtn = 'Well, I am very fond of apples...';
+				}
+				else if (interp.extra === 'name'){
+					rtn = 'My name is Jake Bot, but I have been called "human slave and servant" before';
+				}
+				else
+					rtn = 'I do not know.';
 			}
 			else if (interp.subject === 'i'){
 				rtn = 'You are a mere human.';
@@ -76,6 +87,9 @@ var app = {
 			else 
 				if (interp.extra === 'wearing'){
 					rtn = rtn + 'wearing clothes.';
+				}
+				else if (interp.extra === 'name'){
+					rtn = rtn + interp.subject + '. You just said the name.';
 				}
 				else
 					rtn = rtn + 'a mere human.';
@@ -92,6 +106,9 @@ var app = {
 			}		
 			else
 				rtn = rtn + 'in an undisclosed, secure location.';
+		}
+		if (interp.extra === 'firetrucks'){
+			rtn = 'Because they have eight wheels and four people on them, and four plus eight is twelve, and there are twelve inches in a foot, and one foot is a ruler, and Queen Elizabeth was a ruler, and Queen Elizabeth was also a ship, and the ship sailed the seas, and in the seas are fish, and fish have fins, and the Finns fought the Russians, and the Russians are red, and fire trucks are always "russian" around.';
 		}
 		else if (interp.question === 'why'){
 			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
@@ -125,9 +142,9 @@ var app = {
 		},
 		def = {
 			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can'],
-			subject: ['you', 'i', 'samuel', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus'],
+			subject: ['you', 'i', 'samuel', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing']
+			extra: ['wearing', 'firetrucks', 'food', 'name']
 		};
 		word = '';
 		
