@@ -5,7 +5,6 @@
 <script src="jquery-2.2.0.min.js"></script>
 
 <script>
-
 var app = {
 	start: function(){
 		console.log('Hey, my name is Jake Bot. Ask me a question, please.');
@@ -29,9 +28,8 @@ var app = {
 				answer = app.answer(interp);
 				
 			console.log('interpretted:', interp);
-			console.log('Answer: ' + answer);
+			$('#response').html(answer);
 		});
-
 	},
 	
 	
@@ -88,20 +86,6 @@ var app = {
 			else
 				rtn = rtn + 'in an undisclosed, secure location.';
 		}
-		if (interp.question === 'is'){
-			rtn = interp.female ? 'She is ' : 'He is ';
-		
-			if (interp.subject === 'samuel'){
-				
-				if (interp.extra === 'weird'){
-					rtn = 'Of course.';
-				}
-				else 
-					rtn = 'Your question is too complicated for my limited understanding.';
-			}	
-			else
-				rtn = 'That is debatable.';
-		}
 		else if (interp.question === 'why'){
 			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 		}
@@ -133,10 +117,10 @@ var app = {
 			extra: ''
 		},
 		def = {
-			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can', 'is'],
+			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can'],
 			subject: ['you', 'i', 'samuel', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing', 'weird']
+			extra: ['wearing']
 		};
 		word = '';
 		
@@ -157,9 +141,7 @@ var app = {
 	}
 	
 };
-
 app.start();
-
 </script>
 
 </head>
@@ -177,6 +159,11 @@ Please, ask me a simple question about someone I know.
 <input type="text" value="" style="width: 250px; font-size: 16px;" />
 <button >Ask</button>
 <form/>
+
+<br>
+<br>
+
+<div id="response" ></div>
 
 </body>
 
