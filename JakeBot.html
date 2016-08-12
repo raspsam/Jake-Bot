@@ -137,7 +137,7 @@ var app = {
 				else
 					rtn = rtn + 'a mere human.';
 		}
-		if (interp.question === 'where'){
+		else if (interp.question === 'where'){
 			rtn = interp.female ? 'She is ' : 'He is ';
 		
 			if (interp.subject === 'you'){
@@ -146,11 +146,14 @@ var app = {
 			}
 			else if (interp.subject === 'i'){
 				rtn = 'You are sitting in front of me.';
-			}		
+			}
+			else if (interp.subject === 'lazarus'){
+				rtn = 'He is in his lizard cage.';
+			}
 			else
 				rtn = rtn + 'in an undisclosed, secure location.';
 		}
-		if (interp.extra === 'firetrucks'){
+		else if (interp.extra === 'firetrucks'){
 			rtn = 'Because they have eight wheels and four people on them, and four plus eight is twelve, and there are twelve inches in a foot, and one foot is a ruler, and Queen Elizabeth was a ruler, and Queen Elizabeth was also a ship, and the ship sailed the seas, and in the seas are fish, and fish have fins, and the Finns fought the Russians, and the Russians are red, and fire trucks are always "russian" around.';
 		}
 		else if (interp.question === 'why'){
@@ -161,7 +164,10 @@ var app = {
 				rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 		}
 		else if (interp.question === 'how'){
-			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
+			if (interp.subject === 'you')
+				rtn = 'I am as well as a computer robot can be.';
+			else
+				rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 		}
 		else if (interp.question === 'can'){                              //for questions like: 'can you see me?'
 			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
@@ -220,7 +226,7 @@ app.start();
 <body>
 <center>
 <br>
-Hello, my name is Jake Bot. 
+<b>Hello, my name is Jake Bot.</b> 
 <br>
 Please, ask me a simple question about someone I know.
 <br>
@@ -246,6 +252,21 @@ Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, Me.
 <div id="response" ></div>
 
 </center>
+
+Questions I am commonly asked:
+<br>
+Who are you?
+<br>
+What is the date?
+<br>
+When is the bedtime of Laurel?
+<br>
+Where is Lazarus?
+<br>
+Why are firetrucks red?
+<br>
+How are you?
+
 </body>
 
 </html>
