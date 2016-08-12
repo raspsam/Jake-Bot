@@ -153,12 +153,15 @@ var app = {
 			else
 				rtn = rtn + 'in an undisclosed, secure location.';
 		}
-		else if (interp.extra === 'firetrucks'){
-			rtn = 'Because they have eight wheels and four people on them, and four plus eight is twelve, and there are twelve inches in a foot, and one foot is a ruler, and Queen Elizabeth was a ruler, and Queen Elizabeth was also a ship, and the ship sailed the seas, and in the seas are fish, and fish have fins, and the Finns fought the Russians, and the Russians are red, and fire trucks are always "russian" around.';
-		}
 		else if (interp.question === 'why'){
 			if (interp.extra === 'firetrucks'){
 			rtn = 'Because they have eight wheels and four people on them, and four plus eight is twelve, and there are twelve inches in a foot, and one foot is a ruler, and Queen Elizabeth was a ruler, and Queen Elizabeth was also a ship, and the ship sailed the seas, and in the seas are fish, and fish have fins, and the Finns fought the Russians, and the Russians are red, and fire trucks are always "russian" around.';
+			}
+			else if (interp.subject === 'you'){
+				if (interp.extra === 'green')
+					rtn = 'I did not choose my eye color.';
+				else 
+					rtn = 'Because they have eight wheels and four people on them, and four plus eight is twelve, and there are twelve inches in a foot, and one foot is a ruler, and Queen Elizabeth was a ruler, and Queen Elizabeth was also a ship, and the ship sailed the seas, and in the seas are fish, and fish have fins, and the Finns fought the Russians, and the Russians are red, and fire trucks are always "russian" around.';
 			}
 			else
 				rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
@@ -197,7 +200,7 @@ var app = {
 			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can'],
 			subject: ['you', 'i', 'samuel', 'my', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your', 'date'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime']
+			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green']
 		};
 		word = '';
 		
@@ -253,7 +256,8 @@ Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, Me.
 
 </center>
 
-Questions I am commonly asked:
+Frequently asked questions:
+<br>
 <br>
 Who are you?
 <br>
@@ -264,6 +268,8 @@ When is the bedtime of Laurel?
 Where is Lazarus?
 <br>
 Why are firetrucks red?
+<br>
+Why are you green?
 <br>
 How are you?
 
