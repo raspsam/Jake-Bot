@@ -60,7 +60,7 @@ var app = {
 			else 
 				rtn = rtn + interp.subject + '.';
 		}
-		if (interp.question === 'when'){
+		else if (interp.question === 'when'){
 			rtn = interp.female ? 'Her ' : 'His ';
 			
 			if (interp.subject === 'your'){
@@ -92,10 +92,10 @@ var app = {
 					rtn = 'I am a computer robot.';
 			
 			}
-			if (interp.subject === 'date'){
+			else if (interp.subject === 'date'){
 				rtn = 'The date is ' + today + '.';
 			}
-			if (interp.subject === 'your'){
+			else if (interp.subject === 'your'){
 				
 				if (interp.extra === 'food'){
 					rtn = 'Well, I am very fond of apples...';
