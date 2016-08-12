@@ -13,7 +13,7 @@ if(dd<10)
 	dd = '0' + dd;
 if (mm<10)
 	mm = '0' + mm;
-today = dd + '-' + mm + '-' + yyyy;
+today = mm + '-' + dd + '-' + yyyy;
 var app = {
 	start: function(){
 		console.log('Hey, my name is Jake Bot. Ask me a question, please.');
@@ -41,11 +41,7 @@ var app = {
 		});
 	},
 	
-	
-	answer: function(interp){
-		var rtn ='';		
-	
-		if (interp.question === 'who'){
+	answer_who: function(rtn, interp){
 			rtn = interp.female ? 'She is ' : 'He is ';
 			
 			if (interp.subject === 'you'){
@@ -59,8 +55,11 @@ var app = {
 			}	
 			else 
 				rtn = rtn + interp.subject + '.';
-		}
-		else if (interp.question === 'when'){
+				
+		return rtn;
+	},
+	
+	answer_when: function(rtn, interp){
 			rtn = interp.female ? 'Her ' : 'His ';
 			
 			if (interp.subject === 'your'){
@@ -79,6 +78,18 @@ var app = {
 			}	
 			else 
 				rtn = rtn + 'bedtime is highly classified.';
+				
+		return rtn;
+	},
+	
+	answer: function(interp){
+		var rtn ='';		
+	
+		if (interp.question === 'who'){
+			this.answer_who(rtn, interp);
+		}
+		else if (interp.question === 'when'){
+			this.answer_when(rtn, interp);
 		}
 		else if (interp.question === 'what'){
 			rtn = interp.female ? 'She is ' : 'He is ';
@@ -205,13 +216,15 @@ app.start();
 </script>
 
 </head>
-
+<div id='back' style='background-color: #00FF89; width: 1008px; height: 668px;' >
 <body>
-
+<center>
+<br>
 Hello, my name is Jake Bot. 
 <br>
 Please, ask me a simple question about someone I know.
-
+<br>
+Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, Me.
 <br>
 <br>
 
@@ -225,13 +238,14 @@ Please, ask me a simple question about someone I know.
 
 <style>
 #response {
-   color: green;
+   color: blue;
    font-size: 20px;
 }
 </style>
 
 <div id="response" ></div>
 
+</center>
 </body>
 
 </html>
