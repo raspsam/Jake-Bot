@@ -51,7 +51,7 @@ var app = {
 				rtn = 'I am the knowledge limited Jake Bot.';
 			}	
 			else if (interp.subject === 'i'){
-				rtn = 'Throughout Earths culture, there seems to be an identity crisis. ';
+				rtn = "Throughout Earth's culture, there seems to be an identity crisis. Only you can answer this question. It must come from within.";
 			}	
 			else if (interp.subject === 'samuel'){
 				rtn = 'He is my creator, builder, maker, producer, designer, developer.';
@@ -81,7 +81,7 @@ var app = {
 				rtn = 'Samuel must go to bed at 8:00.';
 			}	
 			else 
-				rtn = rtn + 'bedtime is highly classified.';
+				rtn = rtn + 'has a bedtime that is highly classified.';
 				
 		return rtn;
 	},
@@ -234,6 +234,28 @@ var app = {
 		return rtn;
 	},
 	
+	answer_do: function(rtn, interp){
+		if (interp.subject === 'you'){
+			if (interp.extra === 'want')
+				rtn = 'I have everything that I need. A power source and a human to talk to.';
+			else if (interp.extra === 'have'){
+				rtn = 'I have everything that I need. A power source and a human to talk to.';
+			}
+			else
+				rtn = 'There is not much else to know about me.';
+		}
+		else if (interp.subject === 'i'){
+			if (interp.extra === 'bother')
+				rtn = 'Yes.';
+			else 
+				rtn = 'Do not question yourself too much.';
+		}
+		else
+			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
+				
+		return rtn;
+	},
+	
 	answer: function(interp){
 		var rtn ='';		
 	
@@ -254,6 +276,9 @@ var app = {
 		}
 		else if (interp.question === 'how'){
 			rtn = this.answer_how(rtn, interp);
+		}
+		else if (interp.question === 'do'){
+			rtn = this.answer_do(rtn, interp);
 		}
 		else if (interp.question === 'can'){                              //for questions like: 'can you see me?'
 			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
@@ -294,10 +319,10 @@ var app = {
 			contradiction: ''
 		},
 		def = {
-			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can'],
+			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can', 'do'],
 			subject: ['you', 'i', 'samuel', 'my', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your', 'date'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green', 'old', 'hello', 'hi', 'are'],
+			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green', 'old', 'hello', 'hi', 'are', 'want', 'have', 'bother'],
 			contradiction: ['not']
 		};
 		word = '';
@@ -334,7 +359,7 @@ app.start();
 <br>
 Please, ask me a simple question about someone I know.
 <br>
-Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, Me.
+Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, You, Me.
 <br>
 <br>
 
@@ -360,7 +385,7 @@ Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, Me.
 Frequently asked questions:
 <br>
 <br>
-Who are you?
+Who am I?
 <br>
 What is the date?
 <br>
@@ -375,6 +400,8 @@ Why are you green?
 How are you?
 <br>
 How old are you?
+<br>
+Do I bother people?
 
 </body>
 
