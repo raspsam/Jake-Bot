@@ -172,8 +172,62 @@ var app = {
 	
 	
 	answer_how: function(rtn, interp){
-			if (interp.subject === 'you')
-				rtn = 'I am as well as a computer robot can be.';
+			if (interp.subject === 'you'){
+				if (interp.extra === 'old'){
+					rtn = 'I have existed for several days.';
+				}
+				else
+					rtn = 'I am as well as a computer robot can be.';
+			}
+			else if (interp.subject === 'samuel'){
+				if (interp.extra === 'old'){
+					rtn = 'He is 16.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
+			}
+			else if (interp.subject === 'laurel'){
+				if (interp.extra === 'old'){
+					rtn = 'She is 12.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
+			}
+			else if (interp.subject === 'chloe'){
+				if (interp.extra === 'old'){
+					rtn = 'She is 10.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
+			}
+			else if (interp.subject === 'noah'){
+				if (interp.extra === 'old'){
+					rtn = 'He is 10.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
+			}
+			else if (interp.subject === 'josh'){
+				if (interp.extra === 'old'){
+					rtn = 'He is 43.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
+			}
+			else if (interp.subject === 'elizabeth'){
+				if (interp.extra === 'old'){
+					rtn = 'She is about to turn 40.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
+			}
+			else if (interp.subject === 'lazarus'){
+				if (interp.extra === 'old'){
+					rtn = 'He is older than his scales and younger than his expiration date.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + 'is having a wonderful time basking.';
+			}
 			else
 				rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 				
@@ -204,6 +258,19 @@ var app = {
 		else if (interp.question === 'can'){                              //for questions like: 'can you see me?'
 			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 		}
+		else if (interp.extra === 'hello'){
+			rtn = 'Hello, human.';
+		}
+		else 
+			if (interp.subject === 'you'){
+				if (interp.extra === 'are')
+					if (interp.contradiction === 'not')
+						rtn = 'Yes, I am.';
+					else
+						rtn = 'I know.';
+			}
+					
+			
 		
 		return rtn;
 	},
@@ -223,13 +290,15 @@ var app = {
 		var rtn = {
 			question: '',
 			subject: '',
-			extra: ''
+			extra: '',
+			contradiction: ''
 		},
 		def = {
 			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can'],
 			subject: ['you', 'i', 'samuel', 'my', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your', 'date'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green']
+			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green', 'old', 'hello', 'hi', 'are'],
+			contradiction: ['not']
 		};
 		word = '';
 		
@@ -238,8 +307,11 @@ var app = {
 			if (def.question.indexOf(word) !== -1){
 				rtn.question = word;	
 			}
-			if (def.extra.indexOf(word) !== -1)
+			if (def.extra.indexOf(word) !== -1){
 				rtn.extra = word;
+			}	
+			if (def.contradiction.indexOf(word) !== -1)
+				rtn.contradiction = word;	
 			else if (def.subject.indexOf(word) !== -1){
 				rtn.subject = word;
 				rtn.female = (def.female.indexOf(word) !== -1)
@@ -301,6 +373,8 @@ Why are firetrucks red?
 Why are you green?
 <br>
 How are you?
+<br>
+How old are you?
 
 </body>
 
