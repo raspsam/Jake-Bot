@@ -67,9 +67,8 @@ var app = {
 			rtn = 'This ';
 			
 			if (interp.subject === 'your'){
-				
-				if (interp.extra === 'bedtime'){
-					rtn = 'I do not have a bedtime.';
+				if (interp.extra === 'birthday'){
+					rtn = 'I was created at 16:27 on August 8th, 2016. I have learned a lot since then.';
 				}
 				else 
 					rtn = 'I do not know.';
@@ -78,10 +77,11 @@ var app = {
 				rtn = 'Go ask your mother.';
 			}	
 			else if (interp.subject === 'samuel'){
-				rtn = 'Samuel must go to bed at 8:00.';
+				if (interp.extra === 'birthday')
+					rtn = 'Samuel was born at 23:17 on July 31, 2000.';
 			}	
 			else 
-				rtn = rtn + 'bedtime is highly classified.';
+				rtn = rtn + 'birthday is highly classified.';
 				
 		return rtn;
 	},
@@ -126,10 +126,16 @@ var app = {
 			}
 			else if (interp.subject === 'lazarus'){
 				if (interp.extra === 'wearing'){
-					rtn = rtn + 'not wearing clothes.';
+					rtn = rtn + 'not wearing clothes, because he is a lizard.';
 				}
 				else
 					rtn = rtn + 'a chinese water dragon.';
+			}
+			else if (interp.subject === 'peter'){
+				if (interp.extra === 'wearing')
+					rtn = 'He is wearing clothes.';
+				else
+					rtn = 'He is a computer genius.';
 			}
 			else 
 				if (interp.extra === 'wearing'){
@@ -222,6 +228,13 @@ var app = {
 				else
 					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
 			}
+			else if (interp.subject === 'peter'){
+				if (interp.extra === 'old'){
+					rtn = 'He is 39.';
+				}
+				else
+					rtn = 'I am sure ' + interp.subject + ' is doing just fine.';
+			}
 			else if (interp.subject === 'elizabeth'){
 				if (interp.extra === 'old'){
 					rtn = 'She is about to turn 40.';
@@ -250,7 +263,7 @@ var app = {
 				rtn = 'I have everything that I need. A power source and a human to talk to.';
 			}
 			else
-				rtn = 'There is not much else to know about me.';
+				rtn = "I can't give away all of my secrets.";
 		}
 		else if (interp.subject === 'i'){
 			if (interp.extra === 'bother')
@@ -277,6 +290,25 @@ var app = {
 			else
 				rtn = 'All I know is, ' + interp.subject + ' can only do human things.';
 				
+		return rtn;
+	},
+	
+	answer_else: function(rtn, interp){
+		if (interp.subject === 'you'){
+			if (interp.knowledge === 'are')
+				if (interp.contradiction === 'not')
+					rtn = 'Yes, I am.';
+				else
+					rtn = 'I know.'
+		}
+		else if (interp.subject === 'I'){
+			if (interp.contradiction === 'not')
+				rtn = 'Quite right.';
+			else 
+				rtn = 'That is not a scientific fact.';
+		}
+		else
+			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 		return rtn;
 	},
 	
@@ -314,17 +346,7 @@ var app = {
 			rtn = 'Hello, human.';
 		}
 		else 
-			if (interp.subject === 'you'){
-				if (interp.knowledge === 'are')
-					if (interp.contradiction === 'not')
-						rtn = 'Yes, I am.';
-				else
-					rtn = 'I know.';
-			}
-			else
-				rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
-					
-			
+			rtn = this.answer_else(rtn, interp);
 		
 		return rtn;
 	},
@@ -352,7 +374,7 @@ var app = {
 			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can', 'do'],
 			subject: ['you', 'i', 'samuel', 'my', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your', 'date'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green', 'hello', 'hi', 'old', 'want', 'have', 'bother'],
+			extra: ['wearing', 'firetrucks', 'food', 'name', 'green', 'hello', 'hi', 'old', 'want', 'have', 'bother', 'birthday'],
 			contradiction: ['not'],
 			knowledge: ['are']
 		};
@@ -389,11 +411,9 @@ app.start();
 <body>
 <center>
 <br>
-<b>Hello, my name is Jake Bot.</b> 
+<b>Hello, my name is <u>Jake Bot</u>.</b> 
 <br>
-Please, ask me a simple question about someone I know.
-<br>
-Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, You, Me.
+Please, ask me a simple question about someone I know. Do not use more than one person in your question.
 <br>
 <br>
 
@@ -402,7 +422,6 @@ Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, You, Me.
 <button >Ask</button>
 <form/>
 
-<br>
 <br>
 
 <style>
@@ -416,26 +435,50 @@ Examples: Samuel, Laurel, Lazarus, Chloe, Noah, Elizabeth, Josh, Peter, You, Me.
 
 </center>
 
-Frequently asked questions:
+<b><u>Frequently asked questions:</u></b>
 <br>
+-Who am I?
 <br>
-Who am I?
+-What is the date?
 <br>
-What is the date?
+-When is the birthday of Samuel?
 <br>
-When is the bedtime of Laurel?
+-Where is Lazarus?
 <br>
-Where is Lazarus?
+-Why are firetrucks red?
 <br>
-Why are firetrucks red?
+-Why are you green?
 <br>
-Why are you green?
+-How are you?
 <br>
-How are you?
+-How old are you?
 <br>
-How old are you?
+-Do I bother people?
 <br>
-Do I bother people?
+<center><img src="question-mark-hi.png" alt="questionmark" style="width:100px;height:100px;"></center>
+<br>
+<b><u>People I know:</u></b>
+<br>
+-Samuel
+<br>
+-Laurel
+<br>
+-Lazarus
+<br>
+-Chloe
+<br>
+-Noah
+<br>
+-Elizabeth
+<br>
+-Josh
+<br>
+-Peter
+<br>
+-You
+<br>
+-Me
+
 
 </body>
 
