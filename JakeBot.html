@@ -64,7 +64,7 @@ var app = {
 	
 	
 	answer_when: function(rtn, interp){
-			rtn = interp.female ? 'Her ' : 'His ';
+			rtn = 'This ';
 			
 			if (interp.subject === 'your'){
 				
@@ -81,7 +81,7 @@ var app = {
 				rtn = 'Samuel must go to bed at 8:00.';
 			}	
 			else 
-				rtn = rtn + 'has a bedtime that is highly classified.';
+				rtn = rtn + 'bedtime is highly classified.';
 				
 		return rtn;
 	},
@@ -109,6 +109,14 @@ var app = {
 				}
 				else if (interp.extra === 'name'){
 					rtn = 'My name is Jake Bot, but I have been called "human slave and servant" before.';
+				}
+				else
+					rtn = 'I do not know.';
+			}
+			else if (interp.subject === 'my'){
+				
+				if (interp.extra === 'name'){
+					rtn = 'How do you not know your own name? Did you hit your head?';
 				}
 				else
 					rtn = 'I do not know.';
@@ -256,6 +264,22 @@ var app = {
 		return rtn;
 	},
 	
+	answer_can: function(rtn, interp){
+			if (interp.subject === 'you'){
+				rtn = 'I can do some amazing things, but that may not be one of them.';
+			}
+			else if (interp.subject === 'i'){
+				rtn = 'You are capable of much more than me, but I am not sure you can do that.';
+			}
+			else if (interp.subject === 'samuel'){
+				rtn = 'Samuel can do that, but he may be too lazy.';
+			}
+			else
+				rtn = 'All I know is, ' + interp.subject + ' can only do human things.';
+				
+		return rtn;
+	},
+	
 	answer: function(interp){
 		var rtn ='';		
 	
@@ -281,19 +305,24 @@ var app = {
 			rtn = this.answer_do(rtn, interp);
 		}
 		else if (interp.question === 'can'){                              //for questions like: 'can you see me?'
-			rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
+			rtn = this.answer_can(rtn, interp);
 		}
 		else if (interp.extra === 'hello'){
 			rtn = 'Hello, human.';
 		}
+		else if (interp.extra === 'hi'){
+			rtn = 'Hello, human.';
+		}
 		else 
 			if (interp.subject === 'you'){
-				if (interp.extra === 'are')
+				if (interp.knowledge === 'are')
 					if (interp.contradiction === 'not')
 						rtn = 'Yes, I am.';
-					else
-						rtn = 'I know.';
+				else
+					rtn = 'I know.';
 			}
+			else
+				rtn = 'Your question is too complicated for my limited understanding. Please, ask simple questions.';
 					
 			
 		
@@ -316,14 +345,16 @@ var app = {
 			question: '',
 			subject: '',
 			extra: '',
-			contradiction: ''
+			contradiction: '',
+			knowledge: ''
 		},
 		def = {
 			question: ['who', 'what', 'when', 'where', 'why', 'how', 'can', 'do'],
 			subject: ['you', 'i', 'samuel', 'my', 'laurel', 'josh', 'noah', 'chloe', 'elizabeth', 'peter', 'lazarus', 'your', 'date'],
 			female: ['chloe', 'elizabeth', 'laurel'],
-			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green', 'old', 'hello', 'hi', 'are', 'want', 'have', 'bother'],
-			contradiction: ['not']
+			extra: ['wearing', 'firetrucks', 'food', 'name', 'bedtime', 'green', 'hello', 'hi', 'old', 'want', 'have', 'bother'],
+			contradiction: ['not'],
+			knowledge: ['are']
 		};
 		word = '';
 		
@@ -335,6 +366,9 @@ var app = {
 			if (def.extra.indexOf(word) !== -1){
 				rtn.extra = word;
 			}	
+			if (def.knowledge.indexOf(word) !== -1){
+				rtn.knowledge = word;
+			}
 			if (def.contradiction.indexOf(word) !== -1)
 				rtn.contradiction = word;	
 			else if (def.subject.indexOf(word) !== -1){
